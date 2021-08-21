@@ -18,7 +18,8 @@ class GuessGame:
         self._computer_score = 0
         self._number_of_guesses = 0
         self._guess_limit = int(input("how many times do want the guess to be? "))
-        self._secret_number = random.randint(int(input("enter either 1 or 10: ")), int(input("enter a number greater than 10: ")))
+        self._secret_number = random.randint(int(input("enter either 1 or 10: ")),
+                                             int(input("enter a number greater than 10: ")))
         context = {
             "human_score": self._human_score,
             "computer_score": self._computer_score,
@@ -42,14 +43,13 @@ class GuessGame:
             elif setup["secret_number"] < guess:
                 print("your guess is high")
             else:
-                print( "your guess is incorrect")
+                print("your guess is incorrect")
                 setup["computer_score"] += 1
             context = {
-                "human_score":setup["human_score"],
-                "computer_score":setup["computer_score"],
+                "human_score": setup["human_score"],
+                "computer_score": setup["computer_score"],
             }
         return context
-
 
     def score(self):
         """checking the score and knowing the winner"""
@@ -63,4 +63,3 @@ class GuessGame:
 if __name__ == '__main__':
     guessing_game = GuessGame()
     print(guessing_game.engine())
-
