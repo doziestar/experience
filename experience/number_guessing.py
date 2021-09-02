@@ -1,63 +1,55 @@
 import random
 
+# global secret number
+secret_number = random.randrange(20)
+
 
 class GuessGame:
     """creating a guessing game"""
 
     def __init__(self, **kwargs):
-        self._human_score = 0
-        self._computer_score = 0
-        self._guess_limit = 0
-        self._number_of_guesses = 0
-        self._secret_number = 0
-
-    def setup(self):
-        """this will enable the user setup the game the she wants to play
-        it with the number of duration and range she want her guess"""
+        """setup the parameter of the game"""
         self._human_score = 0
         self._computer_score = 0
         self._number_of_guesses = 0
         self._guess_limit = int(input("how many times do want the guess to be? "))
-        self._secret_number = random.randint(int(input("enter either 1 or 10: ")),
-                                             int(input("enter a number greater than 10: ")))
-        context = {
-            "human_score": self._human_score,
-            "computer_score": self._computer_score,
-            "number_of_guesses": self._number_of_guesses,
-            "guess_limit": self._guess_limit,
-            "secret_number": self._secret_number,
-
-        }
-        return context
 
     def engine(self):
         """this where the actual game logic lies"""
-        setup = self.setup()
-        while setup["number_of_guesses"] < setup["guess_limit"]:
+        while self._number_of_guesses < self._guess_limit:
             guess = int(input("guess the secret_number number: "))
-            if guess == setup["secret_number"]:
+            if guess == secret_number:
                 print("that's the correct answer")
-                setup["human_score"] += 1
-            elif setup["secret_number"] > guess:
+                self._human_score += 1
+                break
+            elif secret_number > guess:
                 print("Your guess is low")
-            elif setup["secret_number"] < guess:
+            elif secret_number < guess:
                 print("your guess is high")
-            else:
-                print("your guess is incorrect")
-                setup["computer_score"] += 1
-            context = {
-                "human_score": setup["human_score"],
-                "computer_score": setup["computer_score"],
-            }
+            self._number_of_guesses += 1
+        else:
+            print("your guess is incorrect! Try again")
+            self._computer_score += 1
+        context = {
+            "human_score": self._human_score,
+            "computer_score": self._computer_score,
+        }
+
         return context
 
-    def score(self):
-        """checking the score and knowing the winner"""
-        return f"total score: {'human': self.engine()['human_score']} vs {'computer': self.engine()['computer_score']}"
-
-    def reset(self):
-        """starting a new game"""
-        return self.engine()
+    # def start_and_calculate_score(self):
+    #     """ start the game by calling the engine method calculate the score function"""
+    #     played = 0
+    #     computer_score = 0
+    #     human_score = 0
+    #     game_repetition = int(input("How many times do you wish to play the game? "))
+    #     while played < game_repetition:
+    #         # for i in range(game_repetition):
+    #         action = self.engine()
+    #         human_score += action["human_score"]
+    #         computer_score += action["computer_score"]
+    #         played += 1
+    #         return action
 
 
 if __name__ == '__main__':

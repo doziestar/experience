@@ -10,6 +10,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/experience/number_guessing.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/experience/word_guessing.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
